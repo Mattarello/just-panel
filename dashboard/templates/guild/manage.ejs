@@ -1,0 +1,76 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+<h2>Sunucuyu Yönet</h2>  
+<div class="row">
+  <div class="col col-4">
+    <%- include('../blocks/guild-card', {guild}) %>
+  </div>
+		<div class="col">
+			<%- include('../blocks/guild-nav.ejs', {active: "manage", guild}) %>
+			<form method="post">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" style="padding: 0; background-color: #222">
+      
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Prefix</div>
+            <input type="text" class="form-control" style="text-align: left;" name="prefix" id="prefix" value="<%= bot.ayar.fetch(`prefix_${guild.id}`) %>" placeholder="Örnek : %">
+        </div>
+      
+      <hr>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Toplam üye</div>
+            <input type="text" class="form-control" style="text-align: left;" name="toplamüye" id="toplamüye" value="<%= bot.ayar.fetch(`toplamüyenick_${guild.id}`) %>" placeholder="Örnek : Toplam üye sayısı: [sayı]">
+        </div>
+
+            <hr>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Rekor online</div>
+            <input type="text" class="form-control" style="text-align: left;" name="rekorsayı" id="onlinesayı" value="<%= bot.ayar.fetch(`rekorsayınick_${guild.id}`) %>" placeholder="Örnek : Rekor sayısı: [sayı]">
+        </div>
+              
+            <hr>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Bot sayısı</div>
+            <input type="text" class="form-control" style="text-align: left;" name="tümbot" id="tümbot" value="<%= bot.ayar.fetch(`tümbotnick_${guild.id}`) %>" placeholder="Örnek : Tüm botlar: [sayı]">
+        </div>
+                  <hr>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Çevrimiçi üyeler</div>
+            <input type="text" class="form-control" style="text-align: left;" name="aktifsayı" id="aktifsayı" value="<%= bot.ayar.fetch(`aktifsayınick_${guild.id}`) %>" placeholder="Örnek : Aktif sayısı: [sayı]">
+        </div>
+      
+                      <hr>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Sesli kanalındaki üyeler</div>
+            <input type="text" class="form-control" style="text-align: left;" name="sessayı" id="sessayı" value="<%= bot.ayar.fetch(`sessayınick_${guild.id}`) %>" placeholder="Örnek : Seslidekiler: [sayı]">
+        </div>
+      
+                            <hr>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 75%; margin: 0 !important;">
+            <div class="input-group-addon" style="width: 150px; text-align: left; margin: 0;">Son üye</div>
+            <input type="text" class="form-control" style="text-align: left;" name="sonüye" id="sonüye" value="<%= bot.ayar.fetch(`sonüyenick_${guild.id}`) %>" placeholder="Örnek : Son katılan üye: [kişi]">
+        </div>
+      
+
+      </ul>
+    <hr>
+    <br>
+    <br>
+    <h6>
+      NOT: [sayı] veya [kişi] yazan yer değişkendir örnek Aktif sayısı: ([sayı]) veya [[sayı]] gibi yazabilirsiniz.
+    </h6>
+    <br>
+    <br>
+    <hr>
+				<div style="width: 100%; text-align: right; margin-top: 20px;">
+					<a class="btn btn-danger" data-toggle="modal" data-target="#settingsResetModal" role="button" style="color: #ffffff;">Ayarları Sıfırla<i class="fa fa-fw fa-cogs" aria-hidden="true"></i></a>
+					<button type="submit" class="btn btn-primary">Değişiklikleri Kaydet<i class="fa fa-fw fa-save" aria-hidden="true"></i></button>
+				</div>
+    </form>
+  </div>
+</div>
+<% include ("../blocks/guild-modals") %>
+<script type="text/javascript">
+	var ts = parseInt($('#guildCreate').text());
+	$('#guildCreate').html(`<strong>Kuruluş</strong>: ${moment(ts).format(" D [gün], H [saat], m [dakika], s [saniye]")} önce kurulmuş`);
+</script>
+<% include("../blocks/footer") %>

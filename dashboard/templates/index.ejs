@@ -1,0 +1,10 @@
+<%- include('blocks/header', {bot, user, path}) %>
+  <div class="jumbotron">
+    <div>
+      <h1><%= bot.user.username %> Kontrol Paneli</h1>
+      <h4><%= bot.user.username %> Adlı botumuz size sunucunun istatisliklerini sunucunuzdaki ayarlanan ses kanallarına yansıtır.</h4>
+      <p><a class="btn btn-primary" href="/commands" role="button">Komutlar »</a></p>
+    </div>
+  </div>
+<marquee style="color: yellow;"><%= bot.user.username %> adlı botun kontrol panelindesiniz hata bulursanız botun destek sunucusuna gelebilirsiniz.</marquee>
+ <%- include('blocks/footer') %>
